@@ -1,14 +1,17 @@
-const express = require("express");
-const app = express();
+const express = require('express');
+const router = new express.Router();
 const cheerio = require('cheerio');
 
-app.get("/careers", async (req, res) => {
+const actionPageUri = process.env.ACTION_PAGE_URI;
+
+
+router.get("/getOpenOpsitions", async (req, res) => {
     const department = req.query.department;
     if (!department) {
         return res.send("Department is required!")
     }
     try {
-        const response = await fetch("https://www.actian.com/company/careers/").then(res => res.text());
+        const response = await fetch(actionPageUri).then(res => res.text());
         const result = getValue(response, department);
         return res.send(`result: ${result}`);
     } catch (e) {
@@ -33,6 +36,4 @@ const getValue = (res, department) => {
     return jobList;
 }
 
-app.listen(4000, () => {
-    console.log("server is running on port 4000")
-})
+module.exports = router;
