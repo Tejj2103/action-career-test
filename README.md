@@ -13,11 +13,13 @@ We are parsing an html response (page) on the server using the "cheerio" npm pac
 * git clone the repo
 * install the node version (>= 18.14)
 * open terminal and run cmd
+
 ```
 npm run install
-
+```
 then 
 
+```
 npm start
 ```
 
